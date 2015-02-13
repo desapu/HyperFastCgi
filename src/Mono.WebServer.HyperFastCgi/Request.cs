@@ -168,7 +168,9 @@ namespace Mono.WebServer.HyperFastCgi
 				value = enc.GetString (data, offset, vlen);
 				offset += vlen;
 
-				parameter_table.Add (name, value);
+				if (!parameter_table.ContainsKey (name)) {
+					parameter_table.Add (name, value);
+				}
 
 				if (parseHeaders) {
 					string header = ReformatHttpHeader (name);
